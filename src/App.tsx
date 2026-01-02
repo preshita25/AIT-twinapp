@@ -1,14 +1,16 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { QuizGame } from "./components/QuizGame";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 import Index from "./pages/Index";
-import { LandingPage } from "./components/LandingPage";
-import { StudentDashboard } from "./components/StudentDashboard";
-import { ParentTeacherInsights } from "./components/ParentTeacherInsights";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import AIChallenge from "./pages/AIChallenge";
+import DailyChallenge from "./pages/DailyChallenge";
+import ParentInsight from "./pages/ParentInsight";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -18,17 +20,54 @@ export default function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+
+            {/* PUBLIC */}
             <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+
+            {/* DASHBOARD */}
             <Route
               path="/dashboard"
               element={
-                // <ProtectedRoute>
-                  <StudentDashboard />
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
               }
-           />
-            <Route path="/quiz" element={<QuizGame />} />
-            <Route path="/insights" element={<ParentTeacherInsights />} />
+            />
+
+            {/* AI CHALLENGE */}
+            <Route
+              path="/dashboard/challenge"
+              element={
+                <ProtectedRoute>
+                  <AIChallenge />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* DAILY CHALLENGE (OPTIONAL) */}
+            <Route
+              path="/dashboard/daily-challenge"
+              element={
+                <ProtectedRoute>
+                  <DailyChallenge />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* PARENT INSIGHT */}
+            <Route
+              path="/dashboard/parent-insight"
+              element={
+                <ProtectedRoute>
+                  <ParentInsight />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* FALLBACK */}
+            <Route path="*" element={<NotFound />} />
+
           </Routes>
         </BrowserRouter>
       </AuthProvider>

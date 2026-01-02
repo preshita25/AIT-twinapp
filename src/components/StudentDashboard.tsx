@@ -266,7 +266,7 @@ export function StudentDashboard() {
                 <Button
                   variant="hero"
                   className="w-full mb-3"
-                  onClick={() => navigate("/quiz")}
+                  onClick={() => navigate("/dashboard/challenge")}
               >
                 <BookOpen className="w-5 h-5" />
                 Start Daily Challenge
@@ -275,7 +275,7 @@ export function StudentDashboard() {
                 <Button
                   variant="outline"
                   className="w-full"
-                  onClick={() => navigate("/insights")}
+                  onClick={() => navigate("/dashboard/parent-insight")}
                 >
                   <Users className="w-5 h-5" />
                   Send Parent Insight

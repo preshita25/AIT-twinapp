@@ -6,8 +6,8 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log("LOGIN CLICKED"); // YOU WILL SEE THIS
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     login();
     navigate("/dashboard");
   };
@@ -19,20 +19,52 @@ export default function Login() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexDirection: "column",
-        gap: "1.5rem",
       }}
     >
-      <h1>Login to EduTwin</h1>
-
-      {/* IMPORTANT: type="button" */}
-      <Button
-        type="button"
-        onClick={handleLogin}
-        className="px-8 py-5 text-lg"
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          width: "100%",
+          maxWidth: "400px",
+          padding: "2rem",
+          borderRadius: "12px",
+          border: "1px solid #e5e7eb",
+        }}
       >
-        Login
-      </Button>
+        <h1 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+          Login to EduTwin
+        </h1>
+
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "1rem",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+          }}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "1.5rem",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+          }}
+        />
+
+        <Button type="submit" className="w-full">
+          Continue
+        </Button>
+      </form>
     </div>
   );
 }

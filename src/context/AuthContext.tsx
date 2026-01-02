@@ -4,6 +4,12 @@ type AuthContextType = {
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
+
+  // 🔥 NEW
+  xp: number;
+  addXP: (amount: number) => void;
+  streak: number;
+  incrementStreak: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -13,8 +19,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.getItem("auth") === "true"
   );
 
+  // 🔥 XP STATE
+  const [xp, setXp] = useState<number>(
+    Number(localStorage.getItem("xp")) || 12450
+  );
+
+  // 🔥 STREAK STATE
+  const [streak, setStreak] = useState<number>(
+    Number(localStorage.getItem("streak")) || 14
+  );
+
   const login = () => {
-    console.log("LOGIN FUNCTION CALLED"); // 🔴 DEBUG
     localStorage.setItem("auth", "true");
     setIsAuthenticated(true);
   };
@@ -24,8 +39,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(false);
   };
 
+  // 🔥 ADD XP
+  const addXP = (amount: number) => {
+    const newXP = xp + amount;
+    setXp(newXP);
+    localStorage.setItem("xp", String(newXP));
+  };
+
+  // 🔥 INCREMENT STREAK
+  const incrementStreak = () => {
+    const newStreak = streak + 1;
+    setStreak(newStreak);
+    localStorage.setItem("streak", String(newStreak));
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        login,
+        logout,
+        xp,
+        addXP,
+        streak,
+        incrementStreak,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
