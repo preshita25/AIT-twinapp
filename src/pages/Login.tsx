@@ -6,9 +6,7 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    login();
+  const handleSubmit = () => {
     navigate("/dashboard");
   };
 
@@ -22,7 +20,8 @@ export default function Login() {
       }}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={() => handleSubmit()}
+
         style={{
           width: "100%",
           maxWidth: "400px",

@@ -73,7 +73,7 @@ const stats = [
 export function LandingPage() {
   const navigate = useNavigate();
 
-  const goToLogin = () => navigate("/login");
+  const goToLogin = () => navigate("/dashboard");
 
   return (
     <div className="min-h-screen bg-background">
