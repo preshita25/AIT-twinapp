@@ -16,8 +16,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       {/* Top bar */}
       <div className="flex justify-end p-4 border-b">
-        <Button variant="ghost" onClick={() => navigate("/dashboard")}>
-  ← Back to Dashboard
+        <Button variant="ghost" onClick={handleLogout}>
+  Logout
 </Button>
 
       </div>
