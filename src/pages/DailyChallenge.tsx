@@ -30,7 +30,6 @@ export default function DailyChallenge() {
   return (
     <div className="min-h-screen p-8">
 
-      {/* 🔙 FIXED BACK BUTTON (LAYOUT-PROOF) */}
       <Button
         onClick={() => navigate("/dashboard")}
         className="fixed top-4 left-4 z-[9999]"
@@ -39,7 +38,6 @@ export default function DailyChallenge() {
         ← Back
       </Button>
 
-      {/* CONTENT */}
       {step >= QUESTIONS.length ? (
         <div className="text-center mt-24">
           <h1 className="text-2xl font-bold mb-4">

@@ -93,7 +93,7 @@ export function LandingPage() {
               How it Works
             </a>
             <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground">
-              Pricing
+              About
             </a>
           </div>
 
